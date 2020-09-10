@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <script>
+        var str = '123asdfasdf123xcv';
+
+        // console.log(str.match(/a/g).length);
+
+        str = str.split('');
+
+        let newArr = [];
+
+        str.forEach((item, index, arr) => {
+            if(newArr.indexOf(item) == -1){
+                newArr.push(item);
+                console.log(item)
+            }
+        })
+
+        console.log(newArr)
+    </script>
+
+</body>
+
+</html>

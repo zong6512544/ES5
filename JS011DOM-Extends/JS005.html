@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <!-- 自定义数据属性，前缀data- -->
+    <p data-name="开发者宝宝" data-author="yzb"></p>
+    <input data-password="这里需要填入密码" type="text">
+
+
+    <script>
+
+        var p = document.getElementsByTagName('p')[0];
+        var input = p.nextElementSibling;
+
+        // 输出data-name
+        console.log(p.dataset.name+p.dataset.author);
+        console.log(input.dataset.password)
+        
+        // 修改or设置：data-name
+        input.dataset.password = '默认密码身份证后六位';
+        
+        console.log(input.dataset.password)
+
+
+    </script>
+
+</body>
+</html>

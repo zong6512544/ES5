@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <dl class="box">
+        <dt>dl</dt>
+        <dd>dd1</dd>
+        <dd>dd2</dd>
+        <dd>dd3</dd>
+        <dd>dd4</dd>
+        <dd>dd5</dd>
+    </dl>
+
+    <ul>
+
+    </ul>
+
+    <script>
+        var box = document.getElementsByClassName('box')[0];
+        var ul = document.getElementsByTagName('ul')[0];
+
+        // 设置插入标记
+        ul.outerHTML = "<ol><li>1</li><li>2</li><li>3</li><li>4</li></ol>";
+
+        // 查看插入标记
+        console.log(box.outerHTML)
+
+    </script>
+</body>
+
+</html>

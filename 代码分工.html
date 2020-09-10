@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        html,
+        body {
+            overflow: hidden;
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            height: 100%;
+
+        }
+
+        .back {
+            position: absolute;
+            height: 100%;
+            width: 100%;
+            background: url(./1.png);
+            filter: blur(3px);
+            z-index: -1;
+        }
+
+        .lian {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-around;
+            align-items: center;
+            width: 20em;
+            height: 17em;
+            border-radius: 30%;
+            background: rgb(250, 203, 132);
+            transition: all 2s;
+            border: 4px solid rgba(0, 0, 0, 1);
+        }
+
+        .shuangyan {
+            width: 15em;
+            display: flex;
+            justify-content: space-around;
+            /* transition: 0.1s all; */
+        }
+
+        .yan {
+            /* transition: 1s all; */
+            position: relative;
+            margin-top: 3em;
+            width: 0.01em;
+            height: 0.01em;
+            background: transparent;
+            box-shadow: 0 0 1px 1.2em rgba(0, 0, 0, 1), 0 0 0 1.8em rgba(255, 255, 255, 1);
+            border-radius: 50%;
+            border: 3px solid;
+        }
+
+        .lian2 {
+            animation: a 1s alternate infinite;
+
+        }
+
+        @keyframes a {
+            0% {
+
+                transform: translate(0, 0px);
+            }
+
+            20% {
+                transform: translate(0, -15px);
+            }
+
+            40% {
+                transform: translate(0, 0px);
+            }
+
+            60% {
+                transform: translate(0, -15px);
+            }
+
+            80% {
+                transform: translate(0, 0px);
+            }
+
+            100% {}
+        }
+
+
+        .zui {
+            position: relative;
+            width: 1px;
+            height: 1px;
+        }
+
+        .zui::after {
+            content: "";
+            position: absolute;
+            left: -0.75em;
+            top: -5em;
+            width: 3em;
+            height: 5em;
+            border-radius: 50%;
+            border: 4px solid;
+            border-color: transparent transparent black transparent;
+            transition: 1s all;
+        }
+
+        .zui::before {
+            content: "";
+            position: absolute;
+            right: -0.75em;
+            top: -5em;
+            width: 3em;
+            height: 5em;
+            border-radius: 50%;
+            border: 4px solid;
+            border-color: transparent transparent black transparent;
+            transition: 1s all;
+        }
+
+
+        .carousel2 {
+            border: ridge 15px sandybrown;
+
+        }
+
+        .red {
+            background: rgba(241, 137, 137, 0.945);
+        }
+
+        .blue {
+            background: blue;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="back"></div>
+    <div class="lian">
+        <div class="shuangyan">
+            <div class="yan"></div>
+            <div class="yan"></div>
+        </div>
+        <div>
+            <div class="bizi"></div>
+        </div>
+        <div class="zui">
+
+        </div>
+    </div>
+
+
+
+
+
+    <script>
+        // 确立实现目标  确立需求数据  确立方向
+
+        // 影响发生现象的数据分析与关系
+
+        // 需求数据提取与创造    
+
+        // 用函数方法来描述发生的现象与数据的关系
+
+        // 数据交流通道的打通，让数据位于同一平面关联
+
+        // 现象转换数据，变为各个函数间的加减法乘除法运算
+
+        // 类名  更改位置    获取元素类名
+        // 直接修改元素数据  更改位置    获取容器元素数据
+
+
+        //    策略方案思维    中心对象数据控制思维   
+
+        ! function () {
+
+            function cut_class(el, change_type, className) {
+
+                var strategy = {
+                    add: function (el, className) {
+                        document.querySelector(el).classList.add(className);
+                    },
+                    toggle: function (el, className) {
+                        document.querySelector(el).classList.toggle(className);
+                    },
+                    remove: function (el, className) {
+                        document.querySelector(el).classList.remove(className);
+                    }
+                }
+
+                return document.querySelector(el) && strategy[change_type] && strategy[change_type].call(this, el,
+                    className);
+            }
+
+
+            // 中心对象控制思维   
+            function timer(fun) {
+                var time = {
+                    time: 0,
+                    timer: timer,
+                    go_on: true,
+                    fun: fun
+                };
+
+                function time_add() {
+                    ++this.time;
+                    this.fun ? this.fun.bind(this)() : 1;
+                    this.go_on && setTimeout(time_add.bind(this), 1000);
+                }
+                time_add.bind(time)()
+                return time;
+            }
+            var a = timer(don);
+
+            function don() {
+                if (!(this.time % 5)) {
+                    cut_class(".lian", "add", "lian2")
+                    setTimeout(() => {
+                        cut_class(".lian2", "remove", "lian2")
+                    }, 900);
+                }
+            }
+
+            window.onmousemove = function () {
+                document.querySelector(".shuangyan").style.cssText = "margin-top:" + event.clientY / 10 + "px" +
+                    ";margin-left:" + (event.clientX - 700) / 15 + "px"
+            }
+            document.querySelector(".lian").onmouseover = function () {
+                cut_class(".lian", "toggle", "red")
+            }
+            document.querySelector(".lian").onmouseout = function () {
+                cut_class(".lian", "toggle", "red")
+            }
+        }()
+    </script>
+
+
+</body>
+
+</html>

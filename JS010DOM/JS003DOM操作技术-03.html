@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h2>点我加载css</h2>
+    <script>
+        var h2 = document.getElementsByTagName("h2")[0];
+
+        // 
+        h2.addEventListener('click', function () {
+            addCss("./JS003DOM操作技术-03.css", "js003css");
+        }, false)
+
+        //封装
+        function addCss(url, id) {
+            // 获取页面是否存在该id的link
+            // 有则删除，继续创建新的link
+            var ifExsit = document.getElementById(id);
+            if (ifExsit) {
+                ifExsit.remove();
+            }
+            // 创建一个link节点元素
+            var linkCss = document.createElement("link");
+            // 设置属性值
+            linkCss.setAttribute("rel", "stylesheet");
+            linkCss.setAttribute("href", url);
+            linkCss.setAttribute("id", id);
+            // 将此元素放入head加载
+            document.head.appendChild(linkCss);
+        }
+    </script>
+</body>
+
+</html>

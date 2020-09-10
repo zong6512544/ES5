@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        function res() {
+            var arr = new Array(10);
+            for (var i = 0; i < arr.length; i++) {
+                arr[i] = (function (index) {
+                    return function(){
+                        return index;
+                    };
+                })(i)
+            }
+            return arr;
+        }
+
+        var getRes = res();
+        for (var i = 0; i < getRes.length; i++) {
+            console.log(getRes[i]());
+        }
+    </script>
+</body>
+
+</html>

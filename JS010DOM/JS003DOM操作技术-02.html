@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h2>点我加载script</h2>
+    <script>
+        var h2 = document.getElementsByTagName("h2")[0];
+
+        h2.addEventListener('click', function () {
+            addScript("./JS003DOM操作技术-02.js", "js003")
+        }, false)
+
+        function addScript(url, codeId) {
+            //判断页面中是否存在该id的脚本
+            //如果存在删除该脚本
+            var ifExist = document.getElementById("codeId");
+            if (ifExist) {
+                ifExist.remove();
+            }
+            //动态创建一个sciprt节点
+            var script = document.createElement("script");
+            //设置属性id值
+            script.setAttribute("id", codeId);
+            //设置属性src
+            script.setAttribute("src", url);
+            //将该script放入页面中加载
+            document.body.appendChild(script);
+        }
+    </script>
+</body>
+
+</html>

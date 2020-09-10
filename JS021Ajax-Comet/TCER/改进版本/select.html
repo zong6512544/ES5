@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        span{
+            background: yellow;
+            color:tomato
+        }
+    </style>
+</head>
+<body>
+    <div id="box">
+        烦我何面帝过生事，得锐卑服十了的家李了狂，使中才天沫得韩，见老见慷活争只这娇掉尝马不死，感和于司胜身惜就姑娟是恶智雷，他落都明这使不导方争救训否鲜身十他，己土便怒，病一久春，案文说而降勉自不系答掉由国勉到故的诗，降资来低关是老哉用在蒲可，一收张，那高游诗。
+    </div>
+        
+
+    <script>
+
+
+document.getElementById('box').onmouseup=function(){
+    var txt = window.getSelection?window.getSelection():document.selection.createRange().text;
+    var textAll = this.innerHTML
+    var span = document.createElement('span')
+    span.innerText = txt;
+    if(span.innerText.length){
+        var pos = textAll.indexOf(txt)
+        var start = textAll.substring(0,pos);
+        var end = textAll.substring(pos+span.innerText.length);
+        this.innerHTML = start+'<span>'+txt+'</span>'+end
+    }
+}
+
+
+
+
+    </script>
+</body>
+</html>

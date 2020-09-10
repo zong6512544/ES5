@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+
+        * {
+            padding: 0;
+            margin: 0;
+        }
+
+        div.box {
+            height: 200px;
+            border: 1px solid #d0d0d0;
+        }
+
+    </style>
+
+</head>
+
+<body>
+    <div class="box" style="width: 200px;">
+
+    </div>
+
+    <script>
+        window.onload = function () {
+
+            var box = document.getElementsByClassName('box')[0];
+
+            box.addEventListener('click', function (e) {
+
+                console.log('width:' + box.style.width)
+                console.log('height:' + box.style.height)
+
+                console.log('Computed-width:' + document.defaultView.getComputedStyle(box, null)['width'])
+                console.log('Computed-height:' + document.defaultView.getComputedStyle(box, null).height)
+
+                console.log('Computed-width-IE:' + box.currentStyle['width'])
+                console.log('Computed-height-IE:' + box.currentStyle.height)
+
+            }, false);
+
+        }
+    </script>
+</body>
+
+</html>

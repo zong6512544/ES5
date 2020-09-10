@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+        }
+
+        form {
+            width: 400px;
+            height: 400px;
+            margin: 0 auto;
+            border: 1px solid #d0d0d0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        form input,
+        button {
+            width: 90%;
+            height: 10%;
+            margin: 5%;
+        }
+    </style>
+</head>
+
+<body>
+
+    <form action="javascript:;">
+        <h3>TEST MY AJAX</h3>
+        <input type="text" name="account" autocomplete="off">
+        <input type="password" name="password" autocomplete="off">
+        <button>登录</button>
+        <input type="reset" value="重置">
+    </form>
+
+    <script src="ajax.js"></script>
+    <script>
+        var btn = document.getElementsByTagName("button")[0].addEventListener('click', function () {
+            // 获取页面节点的值
+            var inputs = document.getElementsByTagName("input");
+
+            $yzb.ajax({
+                url: 'http://localhost:8080/Yao_o/testLogin',
+                method: 'POST',
+                reHeader: 'application/x-www-form-urlencoded',
+                data: {
+                    account: inputs[0].value,
+                    password: inputs[1].value
+                },
+                success: function (obj) {
+                    console.log(obj)
+                    alert(obj.responseText)
+                }
+            })
+        }, false);
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+        }
+
+        div.father {
+            position: relative;
+            width: 100vw;
+            height: 100vh;
+            box-sizing: border-box;
+        }
+
+        div.father header {
+            width: 100vw;
+            height: 10vh;
+            box-sizing: border-box;
+            border-bottom: 1px solid #d0d0d0;
+        }
+
+        div.father main {
+            width: 100vw;
+            height: 80vh;
+            box-sizing: border-box;
+            overflow: auto;
+        }
+
+        div.father main ul {
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        div.father ul li {
+            height: 10vh;
+            width: 100vw;
+            border-bottom: 1px solid #d0d0d0;
+            line-height: 10vh;
+        }
+
+        div.father footer {
+            width: 100vw;
+            height: 10vh;
+            line-height: 10vh;
+            text-align: center;
+            box-sizing: border-box;
+            border-top: 1px solid #d0d0d0;
+        }
+
+        div.father footer button {
+            outline: none;
+            padding: 1vh 1vw;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="father">
+        <header></header>
+        <main>
+            <ul id="uls">
+
+            </ul>
+        </main>
+        <footer>
+            <button>点击添加并跳转到top</button>
+            <button>点击添加并跳转到bottom</button>
+        </footer>
+    </div>
+
+
+    <script>
+        window.onload = function () {
+
+            var btns = document.getElementsByTagName('footer')[0].children;
+            var uls = document.getElementById('uls');
+
+            btns[0].onclick = function () {
+                createElements(uls, "top")
+            }
+
+            btns[1].onclick = function () {
+                createElements(uls, "bottom")
+            }
+
+            // 创建节点
+            function createElements(uls, location) {
+                let li = document.createElement('li');
+                let text = document.createTextNode(uls.children.length + 1);
+                li.appendChild(text);
+
+                if (location == "top") {
+                    uls.insertBefore(li, uls.firstElementChild);
+                    // uls.firstElementChild.scrollIntoView(true);
+                    uls.firstElementChild.scrollIntoView({
+                        block: 'start',
+                        behavior: 'smooth'
+                    });
+                } else {
+                    uls.appendChild(li);
+                    // uls.lastElementChild.scrollIntoView(false)
+                    uls.lastElementChild.scrollIntoView({
+                        block: 'end',
+                        behavior: 'smooth'
+                    });
+                }
+            }
+        }
+    </script>
+</body>
+
+</html>

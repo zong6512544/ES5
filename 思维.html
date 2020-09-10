@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        html,
+        body {
+            overflow: hidden;
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            height: 100%;
+
+        }
+
+        .back {
+            position: absolute;
+            height: 100%;
+            width: 100%;
+            background: url(./1.png);
+            filter: blur(3px);
+            z-index: -1;
+        }
+
+        .lian {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-around;
+            align-items: center;
+            width: 20em;
+            height: 17em;
+            border-radius: 30%;
+            background: rgb(250, 203, 132);
+            transition: all 2s;
+            border: 4px solid rgba(0, 0, 0, 1);
+
+        }
+
+        .shuangyan {
+            width: 15em;
+            display: flex;
+            justify-content: space-around;
+            /* transition: 0.1s all; */
+        }
+
+        .yan {
+            /* transition: 1s all; */
+            position: relative;
+            margin-top: 3em;
+            width: 0.01em;
+            height: 0.01em;
+            background: transparent;
+            box-shadow: 0 0 1px 1.2em rgba(0, 0, 0, 1), 0 0 0 1.8em rgba(255, 255, 255, 1);
+            border-radius: 50%;
+            border: 3px solid;
+        }
+
+        .lian2 {
+            animation: a 1s alternate infinite;
+
+        }
+
+        @keyframes a {
+            0% {
+
+                transform: translate(0, 0px);
+            }
+
+            20% {
+                transform: translate(0, -15px);
+            }
+
+            40% {
+                transform: translate(0, 0px);
+            }
+
+            60% {
+                transform: translate(0, -15px);
+            }
+
+            80% {
+                transform: translate(0, 0px);
+            }
+
+            100% {}
+        }
+
+
+        .zui {
+            position: relative;
+            width: 1px;
+            height: 1px;
+        }
+
+        .zui::after {
+            content: "";
+            position: absolute;
+            left: -0.75em;
+            top: -5em;
+            width: 3em;
+            height: 5em;
+            border-radius: 50%;
+            border: 4px solid;
+            border-color: transparent transparent black transparent;
+            transition: 1s all;
+        }
+
+        .zui::before {
+            content: "";
+            position: absolute;
+            right: -0.75em;
+            top: -5em;
+            width: 3em;
+            height: 5em;
+            border-radius: 50%;
+            border: 4px solid;
+            border-color: transparent transparent black transparent;
+            transition: 1s all;
+        }
+
+        .carousel2 {
+            border: ridge 15px sandybrown;
+
+        }
+
+        .red {
+            background: rgba(241, 137, 137, 0.945);
+        }
+
+        .blue {
+            background: blue;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="back"></div>
+    <div class="l lian">
+        <div class="shuangyan">
+            <div class="yan"></div>
+            <div class="yan"></div>
+        </div>
+        <div>
+            <div class="bizi"></div>
+        </div>
+        <div class="zui">
+
+        </div>
+    </div>
+
+    <script>
+        //  眼睛 class 
+        //  脸部    backgound
+
+        // document.querySelector(el)  获取元素
+        // classList  修改class  remove toggle  add
+        function _(el) {
+            return document.querySelector(el)
+        }
+
+        function cut_class(el, chang_type, className) {
+            var strategy = {
+                remove: function (el, className) {
+                    document.querySelector(el).classList.remove(className);
+                },
+                toggle: function () {
+                    document.querySelector(el).classList.toggle(className)
+                },
+                add: function () {
+                    document.querySelector(el).classList.add(className)
+                }
+            }
+            strategy[chang_type] && strategy[chang_type](el, className)
+        }
+
+        function timer(fun) {
+            var o = {
+                time: 0,
+                addtime: addtime,
+                fun: fun,
+                stop: false
+            }
+            function addtime() {
+                this["fun"] ? this.fun() : 1;
+                console.log(this.time)
+                !this.stop && ++this.time && setTimeout(o.addtime.bind(o), 1000);
+            }
+            o.addtime()
+            return o
+        }
+        var o = timer(a);
+
+        function a() {
+            cut_class(".lian", "add", "lian2")
+
+            this.time > 2 ? cut_class(".lian", "toggle", "ran") : 1;
+            // this.time>3 && (this.stop = true)
+            // !(+this.time % 2) ? cut_class(".lian", "toggle", "red") : 1;
+        }
+
+
+        // _(".lian").style.background="#"+Math.random().toString(16).slice(2,8)
+
+        window.onmousemove = function () {
+           _(".shuangyan").style.cssText= "margin-left:"+(event.clientX-700)/10 +"px;margin-top:"+event.clientY/10+"px"
+           
+        }
+
+        document.querySelector(".lian").onmouseover = function () {
+            cut_class(".lian", "remove", "lian2")
+        }
+
+        document.querySelector(".lian").onclick = function () {
+            cut_class(".lian", "toggle", "red")
+        }
+        document.querySelector("body").onload = function () {
+            cut_class("body", "toggle", "red")
+        }
+    </script>
+
+</body>
+
+</html>
